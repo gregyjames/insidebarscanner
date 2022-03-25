@@ -1,6 +1,5 @@
 import pandas as pd
 import yfinance as yf
-import numpy as np
 from multiprocessing import Pool
 
 def getData(x):
@@ -20,6 +19,6 @@ if __name__ == '__main__':
     tickers = []
     #Modify number to fit your system
     with Pool(32) as p:
-        tickers = p.map(getData, data)
+        tickers = p.map(getData, data["Symbol"].to_list())
     tickers1 = list(filter(lambda x: x != None, tickers))
     print(tickers1)
